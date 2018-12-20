@@ -27,12 +27,12 @@ export default function createStore(reducer, preloadedState, enhancer) {
     enhancer = preloadedState
     preloadedState = undefined
   }
-
+  //对中间件的处理
   if (typeof enhancer !== 'undefined') {
     if (typeof enhancer !== 'function') {
       throw new Error('Expected the enhancer to be a function.')
     }
-
+    //传入createStore对createStore重写，如redux-chunk改写了dispatch使其能dispatch函数
     return enhancer(createStore)(reducer, preloadedState)
   }
 

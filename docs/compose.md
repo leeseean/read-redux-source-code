@@ -1,6 +1,6 @@
 ## 导读
 
-我们经常使用compose来合并reducer，那么compose内部是怎么合并多个reducer的呢？
+我们经常使用compose来合并多个中间件middleware，那么compose内部是怎么合并多个middleware的呢？
 
 下面上源码
 
@@ -20,7 +20,7 @@ export default function compose(...funcs) {
 }
 ```
 
-如上所示，参数funcs是一组reducer函数，
-如果没有传入reducer，则默认返回一个函数。
-如果只传入一个reducer，则返回这个reducer。
-如果传入多个reducer，运用js数组的原生reduce方法层层调用达到每个reducer都能调用到的效果。
+如上所示，参数funcs是一组middleware函数，
+如果没有传入middleware，则默认返回一个函数。
+如果只传入一个middleware，则返回这个middleware。
+如果传入多个middleware，运用js数组的原生reduce方法层层调用达到每个middleware都能调用到的效果。
