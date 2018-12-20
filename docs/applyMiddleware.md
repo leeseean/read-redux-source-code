@@ -1,16 +1,6 @@
 ## 概述
 
-applyMiddleware是一个enhancer，可作为createStore的第三个参数，用来增强store。
-比如redux-thunk，其源码
-```
-export default function thunkMiddleware({ dispatch, getState }) {
-  return next => action =>
-    typeof action === 'function' ?
-      action(dispatch, getState) :
-      next(action);//next对应下面的store.dispatch
-}
-```
-
+applyMiddleware是一个enhancer，可作为createStore的第三个参数，用来增强store。以下结合redux-thunk来讲解。
 
 ## 源码
 
@@ -41,5 +31,11 @@ export default function applyMiddleware(...middlewares) {
     }
   }
 }
-
+// redux-thunk源码
+export default function thunkMiddleware({ dispatch, getState }) {
+  return next => action =>
+    typeof action === 'function' ?
+      action(dispatch, getState) :
+      next(action);//next对应store.dispatch
+}
 ```
